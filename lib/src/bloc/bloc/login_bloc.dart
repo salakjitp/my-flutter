@@ -18,5 +18,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       // await Future.delayed(Duration(seconds: 1));
       emit(state.copyWith(count: state.count - 1));
     });
+
+    //Login
+    on<LoginEventLogin>((event, emit) async {
+      emit(state.copyWith(isAuthenticated: true));
+    });
   }
 }

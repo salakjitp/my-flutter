@@ -8,3 +8,5 @@ abstract class LoginEvent extends Equatable {
 class LoginEventAdd extends LoginEvent {}
 
 class LoginEventMinus extends LoginEvent {}
+
+class LoginEventLogin extends LoginEvent {}
