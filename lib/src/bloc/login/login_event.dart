@@ -9,4 +9,7 @@ class LoginEventAdd extends LoginEvent {}
 
 class LoginEventMinus extends LoginEvent {}
 
-class LoginEventLogin extends LoginEvent {}
+class LoginEventLogin extends LoginEvent {
+  final User payload;
+  LoginEventLogin(this.payload);
+}

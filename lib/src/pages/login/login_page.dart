@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/bloc/login/login_bloc.dart';
+import 'package:flutter_application_1/src/models/user.dart';
 import 'package:flutter_application_1/src/pages/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -95,7 +96,13 @@ class _LoginPagesState extends State<LoginPage> {
 
   void _handleClickLogin() {
     // print("Login ${_usernameController.text}");
-    Navigator.pushNamed(context, AppRoute.home);
+    final user = User(
+      username: _usernameController.text,
+      passwoed: _passwordController.text,
+    );
+    context.read<LoginBloc>().add(LoginEventLogin(user));
+
+    // Navigator.pushNamed(context, AppRoute.home);
   }
 
   void _handleClickReset() {

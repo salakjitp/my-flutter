@@ -4,6 +4,8 @@ import 'package:flutter_application_1/src/pages/login/login_page.dart';
 import 'package:flutter_application_1/src/pages/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+final navigatorState = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
           ),
           home: const LoginPage(title: 'Login Page'),
           routes: AppRoute.all,
+          navigatorKey: navigatorState,
         ));
   }
 }
