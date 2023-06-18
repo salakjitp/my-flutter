@@ -25,8 +25,6 @@ class _LoginPagesState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  int _count = 0;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -47,7 +45,11 @@ class _LoginPagesState extends State<LoginPage> {
       appBar: AppBar(
         // Here we take the value from the LoginPage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            return Text("Login Page ${state.count}");
+          },
+        ),
       ),
       body: Container(
         width: double.infinity,
@@ -70,8 +72,12 @@ class _LoginPagesState extends State<LoginPage> {
                       ..._buildButtons(),
                       Row(
                         children: [
-                          Text(
-                              "Count: ${context.read<LoginBloc>().state.count}"),
+                          // Text("Count: ${context.read<LoginBloc>().state.count}"),
+                          BlocBuilder<LoginBloc, LoginState>(
+                            builder: (context, state) {
+                              return Text("Count: ${state.count}");
+                            },
+                          ),
                           IconButton(
                               onPressed: _handleClickAdd,
                               icon: const Icon(Icons.add)),
@@ -125,12 +131,10 @@ class _LoginPagesState extends State<LoginPage> {
   }
 
   void _handleClickAdd() {
-    _count++;
-    setState(() {});
+    context.read<LoginBloc>().add(LoginEventAdd());
   }
 
   void _handleClickMinus() {
-    _count--;
-    setState(() {});
+    context.read<LoginBloc>().add(LoginEventMinus());
   }
 }

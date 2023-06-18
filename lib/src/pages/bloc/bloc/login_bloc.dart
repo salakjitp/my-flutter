@@ -7,8 +7,16 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState()) {
-    on<LoginEvent>((event, emit) {
-      // TODO: implement event handler
+    //Add
+    on<LoginEventAdd>((event, emit) async {
+      // await Future.delayed(Duration(seconds: 1));
+      emit(state.copyWith(count: state.count + 1));
+    });
+
+    //Minus
+    on<LoginEventMinus>((event, emit) async {
+      // await Future.delayed(Duration(seconds: 1));
+      emit(state.copyWith(count: state.count - 1));
     });
   }
 }
