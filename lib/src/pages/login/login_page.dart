@@ -28,7 +28,6 @@ class _LoginPagesState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _usernameController.text = "admin";
     _passwordController.text = "";
@@ -134,6 +133,19 @@ class _LoginPagesState extends State<LoginPage> {
       TextField(
           controller: _passwordController,
           decoration: const InputDecoration(labelText: "Password")),
+      const SizedBox(height: 10),
+      BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          return Center(
+            child: Text(
+              "${state.isLoginSubmit && state.isAuthenticated ? "Success" : state.isLoginSubmit ? "Error" : ""}",
+              style: TextStyle(
+                color: state.isAuthenticated ? Colors.green : Colors.red,
+              ),
+            ),
+          );
+        },
+      ),
     ];
   }
 
